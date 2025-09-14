@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,13 +13,20 @@ export default function Home() {
         priority
         alt="landing image of a plate with a leaf on top"
       />
-      <div className="flex px-2 sm:px-8 items-center h-full">
-        <div className="bg-gray-400/70 p-4 rounded-lg">
+      <div className="flex items-center justify-center h-full">
+        <div className="bg-gray-400/60 p-4 rounded-lg">
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 text-center">
             Welcome to NOMinate
           </h1>
-          <h2 className="text-center">Find your next great meal idea</h2>
-          <div className="flex"></div>
+          <h2 className="text-center">Find your next meal</h2>
+          <div className="flex justify-evenly p-8">
+            <Button variant="secondary" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/register">Register</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
