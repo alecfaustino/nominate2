@@ -5,7 +5,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo / Brand */}
         <div className="text-xl font-bold text-gray-800">
-          <Link href="/">MySite</Link>
+          <Link href="/">MOminate</Link>
         </div>
 
         {/* Nav Links */}
@@ -14,21 +14,8 @@ export default function Navbar() {
             Home
           </Link>
           <Link href="/about" className="text-gray-700 hover:text-gray-900">
-            About
+            Favorites
           </Link>
-          <Link href="/services" className="text-gray-700 hover:text-gray-900">
-            Services
-          </Link>
-          <Link href="/contact" className="text-gray-700 hover:text-gray-900">
-            Contact
-          </Link>
-        </div>
-
-        {/* Placeholder for button */}
-        <div>
-          <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
-            Sign Up
-          </button>
         </div>
       </div>
     </nav>
