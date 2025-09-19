@@ -5,7 +5,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo / Brand */}
         <div className="text-xl font-bold text-gray-800">
-          <Link href="/">MOminate</Link>
+          <Link href="/">NOMinate</Link>
         </div>
 
         {/* Nav Links */}
