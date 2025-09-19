@@ -1,7 +1,13 @@
+import LeftCol from "@/components/home/LeftCol";
+import MiddleCol from "@/components/home/MiddleCol";
+import RightCol from "@/components/home/RightCol";
+
 export default function Home() {
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
+      <LeftCol />
+      <MiddleCol />
+      <RightCol />
     </div>
   );
 }
