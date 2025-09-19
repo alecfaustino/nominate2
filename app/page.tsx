@@ -21,7 +21,7 @@ export default function Home() {
           <h2 className="text-center">Don't know what to have for dinner?</h2>
           <div className="flex justify-evenly p-8">
             <Button variant="secondary" asChild>
-              <Link href="/login">Get Random Suggestions</Link>
+              <Link href="/home">Get Random Suggestions</Link>
             </Button>
           </div>
         </div>
