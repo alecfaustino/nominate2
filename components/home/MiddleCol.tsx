@@ -42,7 +42,7 @@ export default function MiddleCol() {
   }, []);
 
   return (
-    <div className="grid-cols-1 gap-4 p-4">
+    <div className="grid-cols-1 gap-4">
       {recipes?.map((recipe: any) => (
         <Card key={recipe.id} className="mb-4">
           <CardContent>

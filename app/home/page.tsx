@@ -16,7 +16,7 @@ export default function Home() {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 items-center">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
       <LeftCol setFilters={setFilters} />
       <MiddleCol />
       <RightCol />
