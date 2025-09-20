@@ -3,15 +3,6 @@
 import { SetStateAction } from "react";
 import { Card, CardContent, CardHeader, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
 
 import {
   diets,
@@ -20,6 +11,8 @@ import {
   mealTypes,
 } from "../../app/data/constants";
 import SelectWrap from "./FilterComponents/SelectWrap";
+import { Check } from "lucide-react";
+import CheckboxWrap from "./FilterComponents/CheckboxWrap";
 
 interface LeftColProps {
   setFilters: React.Dispatch<SetStateAction<any>>;
@@ -29,19 +22,27 @@ export default function LeftCol({ setFilters }: LeftColProps) {
   return (
     <div className="text-center items-center">
       <Card>
-        <CardHeader className="text-lg font-bold">Filters</CardHeader>
+        <CardHeader className="text-lg font-bold m-0">
+          Optional Filters
+        </CardHeader>
         <CardContent>
           {/* Meal Type */}
-          <label className="block mb-2 font-medium">Meal Type</label>
-          <div className="flex justify-center mb-4">
+          <label className="block font-medium">Meal Type</label>
+          <div className="flex justify-center">
             <SelectWrap array={mealTypes} placeholder="Meal Type" />
           </div>
 
           {/* Cuisine */}
-          <label className="block mb-2 font-medium">Cuisine</label>
-
-          <div className="flex justify-center mb-4">
+          <label className="block font-medium">Cuisine</label>
+          <div className="flex justify-center">
             <SelectWrap array={cuisines} placeholder="Cuisine" />
+          </div>
+
+          <div>
+            <CheckboxWrap array={intolerances} trigger="Food Intolerances" />
+          </div>
+          <div>
+            <CheckboxWrap array={diets} trigger="Dietary Preferences" />
           </div>
         </CardContent>
         <CardFooter className="flex justify-center">

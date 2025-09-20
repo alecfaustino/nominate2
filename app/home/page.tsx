@@ -16,10 +16,16 @@ export default function Home() {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-      <LeftCol setFilters={setFilters} />
-      <MiddleCol />
-      <RightCol />
+    <div className="flex gap-4 p-4">
+      <div className="flex-1">
+        <LeftCol setFilters={setFilters} />
+      </div>
+      <div className="flex-[3]">
+        <MiddleCol />
+      </div>
+      <div className="flex-[2]">
+        <RightCol />
+      </div>
     </div>
   );
 }

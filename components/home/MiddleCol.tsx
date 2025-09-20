@@ -42,11 +42,11 @@ export default function MiddleCol() {
   }, []);
 
   return (
-    <div className="grid-cols-1 gap-4">
+    <div className="grid-cols-1 gap-4 ">
       {recipes?.map((recipe: any) => (
         <Card key={recipe.id} className="mb-4">
           <CardContent>
-            <div className="text-center space-y-4">
+            <div className="flex flex-col text-center items-center justify-center space-y-4">
               <h2 className="text-lg font-bold">{recipe.title}</h2>
               <Image
                 src={recipe.image}
