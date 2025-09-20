@@ -3,12 +3,20 @@ import { Card, CardContent, CardHeader } from "../ui/card";
 import { Recipe } from "@/app/types/recipe";
 import InfoAccordion from "./DetailComponents/InfoAccordion";
 import DietaryAccordion from "./DetailComponents/DietaryAccordion";
+import MacroAccordion from "./DetailComponents/MacroAccordion";
 interface RightColProps {
   selectedRecipe?: Recipe | null;
 }
 
 export default function RightCol({ selectedRecipe }: RightColProps) {
-  console.log(selectedRecipe?.nutrition?.ingredients);
+  console.log(selectedRecipe);
+
+  const macroNutrientArray =
+    selectedRecipe?.nutrition?.nutrients?.filter((n) =>
+      ["Calories", "Protein", "Fat", "Carbohydrates"].includes(n.name)
+    ) ?? [];
+
+  console.log("macroNutrientArray", macroNutrientArray);
   return (
     <div className="text-center items-center">
       <Card>
@@ -37,6 +45,9 @@ export default function RightCol({ selectedRecipe }: RightColProps) {
                   trigger="Ingredients"
                   array={selectedRecipe?.nutrition?.ingredients}
                 />
+              )}
+              {macroNutrientArray.length > 0 && (
+                <MacroAccordion array={macroNutrientArray} />
               )}
             </div>
           ) : (

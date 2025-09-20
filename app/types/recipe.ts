@@ -15,6 +15,9 @@ export type Recipe = {
     carbs: string;
     protein: string;
     nutrients: {
+      name: string;
+      amount: number;
+      unit: string;
     }[];
     ingredients: {
       id: number;

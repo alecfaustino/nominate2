@@ -19,7 +19,7 @@ export default function DietaryAccordion({
 }: DietaryAccordionProps) {
   console.log("cuisines", cuisines);
   return (
-    <div className="flex-start mb-4 w-full">
+    <div className="flex-start w-full">
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>Dietary Information</AccordionTrigger>

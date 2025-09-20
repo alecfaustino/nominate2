@@ -5,25 +5,24 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-interface InfoAccordionProps {
-  trigger: string;
+interface MacroAccordionProps {
   array: {
-    id: number;
     name: string;
     amount: number;
-    unit: any;
+    unit: string;
+    percentOfDailyNeeds?: number;
   }[];
 }
 
-export default function InfoAccordion({ trigger, array }: InfoAccordionProps) {
+export default function MacroAccordion({ array }: MacroAccordionProps) {
   return (
     <div className="flex-start w-full">
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>{trigger}</AccordionTrigger>
+          <AccordionTrigger>Macro Nutrients</AccordionTrigger>
           <AccordionContent>
             <ul>
-              {array.map((item, idx) => (
+              {array?.map((item, idx) => (
                 <li key={idx}>
                   {item.name}: {item.amount} {item.unit}
                 </li>
