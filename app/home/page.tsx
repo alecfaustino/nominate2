@@ -11,10 +11,6 @@ export default function Home() {
     cuisine: "",
     diet: [],
     intolerances: [],
-    maxCalories: 2000,
-    maxProtein: 500,
-    maxCarbs: 500,
-    maxFat: 500,
   });
 
   return (

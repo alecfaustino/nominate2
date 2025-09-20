@@ -46,10 +46,20 @@ export default function LeftCol({ setFilters }: LeftColProps) {
           </div>
 
           <div>
-            <CheckboxWrap array={intolerances} trigger="Food Intolerances" />
+            <CheckboxWrap
+              array={intolerances}
+              trigger="Food Intolerances"
+              filterName="intolerances"
+              setFilters={setFilters}
+            />
           </div>
           <div>
-            <CheckboxWrap array={diets} trigger="Dietary Preferences" />
+            <CheckboxWrap
+              array={diets}
+              trigger="Dietary Preferences"
+              filterName="diet"
+              setFilters={setFilters}
+            />
           </div>
         </CardContent>
         <CardFooter className="flex justify-center">
