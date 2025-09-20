@@ -9,6 +9,13 @@ export type Recipe = {
   diets?: string[];
   cuisines?: string[];
   mealTypes?: string[];
+  analyzedInstructions?: {
+    name: string;
+    steps: {
+      number: number;
+      step: string;
+    }[];
+  }[];
   nutrition?: {
     calories: string;
     fat: string;
