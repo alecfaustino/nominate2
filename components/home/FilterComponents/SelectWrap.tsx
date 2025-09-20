@@ -8,13 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionContent,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
 type SelectWrapProps = {
   array: string[];
   placeholder: string;

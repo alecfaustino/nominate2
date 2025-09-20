@@ -3,7 +3,9 @@ import LeftCol from "@/components/home/LeftCol";
 import MiddleCol from "@/components/home/MiddleCol";
 import RightCol from "@/components/home/RightCol";
 import { useState } from "react";
+import { Recipe } from "../types/recipe";
 export default function Home() {
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [filters, setFilters] = useState({
     type: "",
     cuisine: "",
@@ -21,10 +23,10 @@ export default function Home() {
         <LeftCol setFilters={setFilters} />
       </div>
       <div className="flex-[3]">
-        <MiddleCol />
+        <MiddleCol setSelectedRecipe={setSelectedRecipe} />
       </div>
       <div className="flex-[2]">
-        <RightCol />
+        <RightCol selectedRecipe={selectedRecipe} />
       </div>
     </div>
   );
