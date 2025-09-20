@@ -19,6 +19,7 @@ import {
   intolerances,
   mealTypes,
 } from "../../app/data/constants";
+import SelectWrap from "./FilterComponents/SelectWrap";
 
 interface LeftColProps {
   setFilters: React.Dispatch<SetStateAction<any>>;
@@ -33,42 +34,14 @@ export default function LeftCol({ setFilters }: LeftColProps) {
           {/* Meal Type */}
           <label className="block mb-2 font-medium">Meal Type</label>
           <div className="flex justify-center mb-4">
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Meal Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Meal Types</SelectLabel>
-                  {mealTypes.map((type) => (
-                    <SelectItem key={type} value={type}>
-                      {type}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <SelectWrap array={mealTypes} placeholder="Meal Type" />
           </div>
 
           {/* Cuisine */}
           <label className="block mb-2 font-medium">Cuisine</label>
 
           <div className="flex justify-center mb-4">
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Cuisine" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Cuisines</SelectLabel>
-                  {cuisines.map((cuisine) => (
-                    <SelectItem key={cuisine} value={cuisine}>
-                      {cuisine}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <SelectWrap array={cuisines} placeholder="Cuisine" />
           </div>
         </CardContent>
         <CardFooter className="flex justify-center">
