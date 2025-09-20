@@ -28,13 +28,21 @@ export default function LeftCol({ setFilters }: LeftColProps) {
           {/* Meal Type */}
           <label className="block font-medium">Meal Type</label>
           <div className="flex justify-center">
-            <SelectWrap array={mealTypes} placeholder="Meal Type" />
+            <SelectWrap
+              array={mealTypes}
+              placeholder="Type"
+              setFilters={setFilters}
+            />
           </div>
 
           {/* Cuisine */}
           <label className="block font-medium">Cuisine</label>
           <div className="flex justify-center">
-            <SelectWrap array={cuisines} placeholder="Cuisine" />
+            <SelectWrap
+              array={cuisines}
+              placeholder="Cuisine"
+              setFilters={setFilters}
+            />
           </div>
 
           <div>

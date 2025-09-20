@@ -7,16 +7,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SetStateAction } from "react";
 
 type SelectWrapProps = {
   array: string[];
   placeholder: string;
+  setFilters: React.Dispatch<SetStateAction<any>>;
 };
 
-export default function SelectWrap({ array, placeholder }: SelectWrapProps) {
+export default function SelectWrap({
+  array,
+  placeholder,
+  setFilters,
+}: SelectWrapProps) {
   return (
     <div className="flex justify-center mb-4">
-      <Select>
+      <Select
+        onValueChange={(value) =>
+          setFilters((prev: any) => ({
+            ...prev,
+            [placeholder.toLowerCase()]: value,
+          }))
+        }>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
