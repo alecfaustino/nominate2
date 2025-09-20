@@ -15,7 +15,6 @@ interface InstructionsAccordionProps {
 export default function InstructionsAccordion({
   array,
 }: InstructionsAccordionProps) {
-  console.log("Array from inside InstructionsAccordion:", array);
   return (
     <div className="flex-start w-full">
       <Accordion type="single" collapsible>

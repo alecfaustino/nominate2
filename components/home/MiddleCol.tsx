@@ -33,7 +33,6 @@ export default function MiddleCol({ setSelectedRecipe }: MiddleColProps) {
       const data = await fetchResult.json();
       const recipe = data.results;
       setRecipes(recipe);
-      console.log(recipe);
     } catch (error) {
       console.error(error);
     } finally {

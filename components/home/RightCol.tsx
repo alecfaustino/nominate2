@@ -10,8 +10,6 @@ interface RightColProps {
 }
 
 export default function RightCol({ selectedRecipe }: RightColProps) {
-  console.log(selectedRecipe);
-
   const macroNutrientArray =
     selectedRecipe?.nutrition?.nutrients?.filter((n) =>
       ["Calories", "Protein", "Fat", "Carbohydrates"].includes(n.name)
