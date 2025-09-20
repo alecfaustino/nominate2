@@ -11,7 +11,6 @@ import {
   mealTypes,
 } from "../../app/data/constants";
 import SelectWrap from "./FilterComponents/SelectWrap";
-import { Check } from "lucide-react";
 import CheckboxWrap from "./FilterComponents/CheckboxWrap";
 
 interface LeftColProps {

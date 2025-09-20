@@ -6,4 +6,22 @@ export type Recipe = {
   servings: number;
   ingredients: string[];
   instructions: string[];
-};
+  diets?: string[];
+  cuisines?: string[];
+  mealTypes?: string[];
+  nutrition?: {
+    calories: string;
+    fat: string;
+    carbs: string;
+    protein: string;
+    nutrients: {
+    }[];
+    ingredients: {
+      id: number;
+      name: string;
+      amount: number;
+      unit: any;
+    }[];
+  };
+  };
+

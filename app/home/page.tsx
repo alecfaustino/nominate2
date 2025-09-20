@@ -25,7 +25,7 @@ export default function Home() {
       <div className="flex-[3]">
         <MiddleCol setSelectedRecipe={setSelectedRecipe} />
       </div>
-      <div className="flex-[2]">
+      <div className="flex-[2] sticky top-20 self-start">
         <RightCol selectedRecipe={selectedRecipe} />
       </div>
     </div>
