@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div className="flex gap-4 p-4">
-      <div className="flex-1">
+      <div className="flex-1 sticky top-20 self-start">
         <LeftCol setFilters={setFilters} />
       </div>
       <div className="flex-[3]">
