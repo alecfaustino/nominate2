@@ -1,8 +1,10 @@
 "use client";
 
-import { SetStateAction } from "react";
+// import { SetStateAction } from "react";
 import { Card, CardContent, CardHeader, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
+import { useState } from "react";
+import { Filters } from "../../app/types/filters";
 
 import {
   diets,
@@ -14,10 +16,11 @@ import SelectWrap from "./FilterComponents/SelectWrap";
 import CheckboxWrap from "./FilterComponents/CheckboxWrap";
 
 interface LeftColProps {
-  setFilters: React.Dispatch<SetStateAction<any>>;
+  setActiveFilters: React.Dispatch<React.SetStateAction<Partial<Filters>>>;
 }
 
-export default function LeftCol({ setFilters }: LeftColProps) {
+export default function LeftCol({ setActiveFilters }: LeftColProps) {
+  const [filters, setFilters] = useState<Partial<Filters>>({});
   return (
     <div className="text-center items-center">
       <Card>
@@ -63,7 +66,13 @@ export default function LeftCol({ setFilters }: LeftColProps) {
           </div>
         </CardContent>
         <CardFooter className="flex justify-center">
-          <Button variant="outline">Apply Filters</Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setActiveFilters(filters);
+            }}>
+            Apply Filters
+          </Button>
         </CardFooter>
       </Card>
     </div>

@@ -3,27 +3,37 @@ import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { Recipe } from "@/app/types/recipe";
+import { Filters } from "@/app/types/filters";
 interface MiddleColProps {
   setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;
+  activeFilters?: Partial<Filters>;
 }
 
-export default function MiddleCol({ setSelectedRecipe }: MiddleColProps) {
+export default function MiddleCol({
+  setSelectedRecipe,
+  activeFilters,
+}: MiddleColProps) {
+  useEffect(() => {
+    console.log("activeFilters changed", activeFilters);
+  }, [activeFilters]);
+
   const loadingRef = useRef(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const baseUrl = "https://api.apilayer.com/spoonacular";
   const apiKey: string = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY || "";
-  const fetchUrl = new URL(`${baseUrl}/recipes/complexSearch`);
-  fetchUrl.searchParams.append("apikey", apiKey);
-  fetchUrl.searchParams.append("addRecipeInformation", "true");
-  fetchUrl.searchParams.append("addRecipeInstructions", "true");
-  fetchUrl.searchParams.append("addRecipeNutrition", "true");
-  fetchUrl.searchParams.append("sort", "random");
-  fetchUrl.searchParams.append("instructionsRequired", "true");
-  fetchUrl.searchParams.append("includeIngredients", "true");
 
   const fetchRecipe = async () => {
     loadingRef.current = true;
     try {
+      const fetchUrl = new URL(`${baseUrl}/recipes/complexSearch`);
+      fetchUrl.searchParams.append("apikey", apiKey);
+      fetchUrl.searchParams.append("addRecipeInformation", "true");
+      fetchUrl.searchParams.append("addRecipeInstructions", "true");
+      fetchUrl.searchParams.append("addRecipeNutrition", "true");
+      fetchUrl.searchParams.append("sort", "random");
+      fetchUrl.searchParams.append("instructionsRequired", "true");
+      fetchUrl.searchParams.append("includeIngredients", "true");
+
       const fetchResult = await fetch(fetchUrl.toString(), {
         method: "GET",
         headers: {
