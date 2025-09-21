@@ -15,7 +15,7 @@ export default function Home() {
       <div className="flex-1 sticky top-20 self-start">
         <LeftCol setActiveFilters={setActiveFilters} />
       </div>
-      <div className="flex-[3]">
+      <div className="flex-[2]">
         <MiddleCol
           setSelectedRecipe={setSelectedRecipe}
           activeFilters={activeFilters}

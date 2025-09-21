@@ -9,6 +9,9 @@ interface MiddleColProps {
   activeFilters?: Partial<Filters>;
 }
 
+// TODO: Infinite Scroll
+// TODO: Loading State
+// TODO: Favorite Handling - Local Storage
 export default function MiddleCol({
   setSelectedRecipe,
   activeFilters,
@@ -17,7 +20,7 @@ export default function MiddleCol({
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const baseUrl = "https://api.apilayer.com/spoonacular";
   const apiKey: string = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY || "";
-
+  const lastCall = useRef(0);
   const fetchRecipe = async () => {
     loadingRef.current = true;
     try {
@@ -59,7 +62,8 @@ export default function MiddleCol({
       });
       const data = await fetchResult.json();
       const recipe = data.results;
-      setRecipes(recipe);
+      setRecipes((prev) => [...prev, ...recipe]);
+      loadingRef.current = false;
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,6 +72,31 @@ export default function MiddleCol({
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      const now = Date.now();
+
+      // Throttle scroll events to once every 200ms
+      if (now - lastCall.current < 200) return;
+      lastCall.current = now;
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.documentElement.scrollHeight;
+
+      if (scrollTop + windowHeight >= fullHeight - 100 && !loadingRef.current) {
+        fetchRecipe();
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    // cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // if the active filters change, reset recipes and fetch new ones
+    setRecipes([]);
     fetchRecipe();
   }, [activeFilters]);
 
@@ -90,6 +119,10 @@ export default function MiddleCol({
                 alt={recipe.title}
                 width={500}
                 height={300}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
               />
               <p>Ready in {recipe.readyInMinutes} minutes</p>
               <p>{recipe.servings} servings</p>
