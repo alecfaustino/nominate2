@@ -13,10 +13,6 @@ export default function MiddleCol({
   setSelectedRecipe,
   activeFilters,
 }: MiddleColProps) {
-  useEffect(() => {
-    console.log("activeFilters changed", activeFilters);
-  }, [activeFilters]);
-
   const loadingRef = useRef(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const baseUrl = "https://api.apilayer.com/spoonacular";
@@ -33,6 +29,27 @@ export default function MiddleCol({
       fetchUrl.searchParams.append("sort", "random");
       fetchUrl.searchParams.append("instructionsRequired", "true");
       fetchUrl.searchParams.append("includeIngredients", "true");
+
+      if (activeFilters) {
+        if (activeFilters.type) {
+          fetchUrl.searchParams.append("type", activeFilters.type);
+        }
+        if (activeFilters.cuisine) {
+          fetchUrl.searchParams.append("cuisine", activeFilters.cuisine);
+        }
+        if (activeFilters.diet && activeFilters.diet.length > 0) {
+          fetchUrl.searchParams.append("diet", activeFilters.diet.join(","));
+        }
+        if (
+          activeFilters.intolerances &&
+          activeFilters.intolerances.length > 0
+        ) {
+          fetchUrl.searchParams.append(
+            "intolerances",
+            activeFilters.intolerances.join(",")
+          );
+        }
+      }
 
       const fetchResult = await fetch(fetchUrl.toString(), {
         method: "GET",
@@ -52,7 +69,7 @@ export default function MiddleCol({
 
   useEffect(() => {
     fetchRecipe();
-  }, []);
+  }, [activeFilters]);
 
   const handleRecipeSelect = (id: number) => {
     const selected = recipes.find((recipe) => recipe?.id === id);

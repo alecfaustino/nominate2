@@ -26,7 +26,7 @@ export default function SelectWrap({
         onValueChange={(value) =>
           setFilters((prev: any) => ({
             ...prev,
-            [placeholder.toLowerCase()]: value,
+            [placeholder.toLowerCase()]: value === "" ? undefined : value,
           }))
         }>
         <SelectTrigger className="w-[180px]">
@@ -35,6 +35,7 @@ export default function SelectWrap({
         <SelectContent>
           <SelectGroup>
             <SelectLabel>{placeholder}</SelectLabel>
+            <SelectItem value="clear">No Preference</SelectItem>
             {array.map((item) => (
               <SelectItem key={item} value={item}>
                 {item}
