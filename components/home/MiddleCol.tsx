@@ -92,7 +92,7 @@ export default function MiddleCol({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [activeFilters]);
 
   useEffect(() => {
     // if the active filters change, reset recipes and fetch new ones

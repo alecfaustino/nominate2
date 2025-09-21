@@ -10,6 +10,7 @@ export default function Home() {
 
   const [activeFilters, setActiveFilters] = useState<Partial<Filters>>({});
 
+  // TODO: Modal Right Col and Hamburger the Left Col on mobile
   return (
     <div className="flex gap-4 p-4">
       <div className="flex-1 sticky top-20 self-start">
