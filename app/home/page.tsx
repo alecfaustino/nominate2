@@ -13,7 +13,7 @@ export default function Home() {
   // TODO: Modal Right Col and Hamburger the Left Col on mobile
   return (
     <div className="flex gap-4 p-4">
-      <div className="flex-1 sticky top-20 self-start">
+      <div className="flex-1 sticky hidden md:block top-20 self-start">
         <LeftCol setActiveFilters={setActiveFilters} />
       </div>
       <div className="flex-[2]">
@@ -22,7 +22,7 @@ export default function Home() {
           activeFilters={activeFilters}
         />
       </div>
-      <div className="flex-[2] sticky top-20 self-start">
+      <div className="flex-[2] hidden md:block sticky top-20 self-start">
         <RightCol selectedRecipe={selectedRecipe} />
       </div>
     </div>
