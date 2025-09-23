@@ -10,8 +10,10 @@ export default function Navbar() {
         </div>
 
         {/* Nav Links */}
-        <div className="hidden md:flex space-x-6 justify-center items-center">
-          <Link href="/">Home</Link>
+        <div className="flex space-x-6 justify-center items-center">
+          <Link href="/filters" className="md:hidden">
+            Filters
+          </Link>
           <Link href="/about">Favorites</Link>
           <DarkButton />
         </div>
