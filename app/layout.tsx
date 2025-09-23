@@ -33,8 +33,6 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
-          {/* Temporary header */}
-          <Navbar />
           {children}
         </ThemeProvider>
       </body>

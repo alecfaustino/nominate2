@@ -18,10 +18,12 @@ import CheckboxWrap from "../FilterComponents/CheckboxWrap";
 
 interface FilterModalProps {
   setActiveFilters: React.Dispatch<React.SetStateAction<Partial<Filters>>>;
+  setIsFilterModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function FilterComponents({
   setActiveFilters,
+  setIsFilterModalOpen,
 }: FilterModalProps) {
   const [filters, setFilters] = useState<Partial<Filters>>({});
   return (
@@ -32,7 +34,9 @@ export default function FilterComponents({
             <CardHeader className="text-lg font-bold m-0">
               <div className="flex justify-between items-center">
                 <h2>Filter Options</h2>
-                <Button variant="ghost" onClick={() => setActiveFilters({})}>
+                <Button
+                  variant="ghost"
+                  onClick={() => setIsFilterModalOpen(false)}>
                   X
                 </Button>
               </div>
@@ -80,6 +84,7 @@ export default function FilterComponents({
                 variant="outline"
                 onClick={() => {
                   setActiveFilters(filters);
+                  setIsFilterModalOpen(false);
                 }}>
                 Apply Filters
               </Button>
