@@ -8,7 +8,7 @@ import { Recipe } from "../types/recipe";
 import { Filters } from "../types/filters";
 export default function Home() {
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 1024);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [activeFilters, setActiveFilters] = useState<Partial<Filters>>({});
 
   useEffect(() => {
