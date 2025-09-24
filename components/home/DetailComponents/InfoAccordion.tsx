@@ -11,7 +11,7 @@ interface InfoAccordionProps {
     id: number;
     name: string;
     amount: number;
-    unit: any;
+    unit: string;
   }[];
 }
 

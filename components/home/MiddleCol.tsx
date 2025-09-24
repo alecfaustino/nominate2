@@ -106,9 +106,10 @@ export default function MiddleCol({
     if (selected) setSelectedRecipe(selected);
   };
 
+  console.log(recipes);
   return (
     <div className="grid-cols-1 gap-4 ">
-      {recipes?.map((recipe: any) => (
+      {recipes?.map((recipe: Recipe) => (
         <Card key={recipe.id} className="mb-4">
           <CardContent>
             <div
