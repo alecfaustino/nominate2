@@ -94,6 +94,7 @@ export default function MiddleCol({
     };
   }, [activeFilters]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // if the active filters change, reset recipes and fetch new ones
     setRecipes([]);

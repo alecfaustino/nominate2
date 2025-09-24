@@ -19,7 +19,9 @@ export default function Home() {
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 text-center">
             Welcome to NOMinate
           </h1>
-          <h2 className="text-center">Don't know what to have for dinner?</h2>
+          <h2 className="text-center">
+            Don&apos;t know what to have for dinner?
+          </h2>
           <div className="flex justify-evenly p-8">
             <Button variant="secondary" asChild>
               <Link href="/home">Get Random Suggestions</Link>

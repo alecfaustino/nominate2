@@ -1,7 +1,5 @@
 "use client";
 
-// TODO USE URL PARAMS TO SEND
-// CHANGE THE FETCH  (MIDDLE COLUMN) TO USE URL PARAMS
 import {
   Card,
   CardContent,

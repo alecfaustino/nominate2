@@ -1,3 +1,4 @@
+import { Filters } from "@/app/types/filters";
 import {
   Select,
   SelectContent,
@@ -12,7 +13,7 @@ import { SetStateAction } from "react";
 type SelectWrapProps = {
   array: string[];
   placeholder: string;
-  setFilters: React.Dispatch<SetStateAction<any>>;
+  setFilters: React.Dispatch<SetStateAction<Partial<Filters>>>;
 };
 
 export default function SelectWrap({
@@ -24,7 +25,7 @@ export default function SelectWrap({
     <div className="flex justify-center mb-4">
       <Select
         onValueChange={(value) =>
-          setFilters((prev: any) => ({
+          setFilters((prev: Partial<Filters>) => ({
             ...prev,
             [placeholder.toLowerCase()]: value === "" ? undefined : value,
           }))

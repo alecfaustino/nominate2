@@ -6,12 +6,13 @@ import {
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Filters } from "@/app/types/filters";
 
 interface CheckboxWrapProps {
   array: string[];
   trigger: string;
-  filterName: string;
-  setFilters: React.Dispatch<React.SetStateAction<any>>;
+  filterName: keyof Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Partial<Filters>>>;
 }
 
 export default function CheckboxWrap({
@@ -20,9 +21,9 @@ export default function CheckboxWrap({
   filterName,
   setFilters,
 }: CheckboxWrapProps) {
-  const updateFilterArray = (key: string, value: string) => {
-    setFilters((prev: any) => {
-      const array: string[] = prev[key] || [];
+  const updateFilterArray = (key: keyof Filters, value: string) => {
+    setFilters((prev: Partial<Filters>) => {
+      const array: string[] = (prev[key] as string[]) || [];
       const updated = array.includes(value)
         ? array.filter((v) => v !== value)
         : [...array, value];

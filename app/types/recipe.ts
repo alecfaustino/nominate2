@@ -30,7 +30,7 @@ export type Recipe = {
       id: number;
       name: string;
       amount: number;
-      unit: any;
+      unit: unknown;
     }[];
   };
   };
