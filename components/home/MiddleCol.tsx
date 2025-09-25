@@ -17,13 +17,13 @@ export default function MiddleCol({
   setSelectedRecipe,
   activeFilters,
 }: MiddleColProps) {
-  const loadingRef = useRef(false);
+  const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const baseUrl = "https://api.apilayer.com/spoonacular";
   const apiKey: string = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY || "";
   const lastCall = useRef(0);
   const fetchRecipe = async () => {
-    loadingRef.current = true;
+    setLoading(true);
     try {
       const fetchUrl = new URL(`${baseUrl}/recipes/complexSearch`);
       fetchUrl.searchParams.append("apikey", apiKey);
@@ -64,11 +64,11 @@ export default function MiddleCol({
       const data = await fetchResult.json();
       const recipe = data.results;
       setRecipes((prev) => [...prev, ...recipe]);
-      loadingRef.current = false;
+      setLoading(false);
     } catch (error) {
       console.error(error);
     } finally {
-      loadingRef.current = false;
+      setLoading(false);
     }
   };
 
@@ -83,7 +83,7 @@ export default function MiddleCol({
       const windowHeight = window.innerHeight;
       const fullHeight = document.documentElement.scrollHeight;
 
-      if (scrollTop + windowHeight >= fullHeight - 100 && !loadingRef.current) {
+      if (scrollTop + windowHeight >= fullHeight - 100 && !loading) {
         fetchRecipe();
       }
     };
@@ -110,7 +110,7 @@ export default function MiddleCol({
   console.log(recipes);
   return (
     <>
-      {loadingRef.current && <Loading />}
+      {loading && <Loading />}
       <div className="grid-cols-1 gap-4 ">
         {recipes?.map((recipe: Recipe) => (
           <Card key={recipe.id} className="mb-4">
