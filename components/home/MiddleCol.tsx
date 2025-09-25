@@ -4,6 +4,7 @@ import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { Recipe } from "@/app/types/recipe";
 import { Filters } from "@/app/types/filters";
+import Loading from "./Loading";
 interface MiddleColProps {
   setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;
   activeFilters?: Partial<Filters>;
@@ -108,30 +109,33 @@ export default function MiddleCol({
 
   console.log(recipes);
   return (
-    <div className="grid-cols-1 gap-4 ">
-      {recipes?.map((recipe: Recipe) => (
-        <Card key={recipe.id} className="mb-4">
-          <CardContent>
-            <div
-              className="flex flex-col text-center items-center justify-center space-y-4"
-              onClick={() => handleRecipeSelect(recipe.id)}>
-              <h2 className="text-lg font-bold">{recipe.title}</h2>
-              <Image
-                src={recipe.image}
-                alt={recipe.title}
-                width={500}
-                height={300}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                }}
-              />
-              <p>Ready in {recipe.readyInMinutes} minutes</p>
-              <p>{recipe.servings} servings</p>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
+    <>
+      {loadingRef.current && <Loading />}
+      <div className="grid-cols-1 gap-4 ">
+        {recipes?.map((recipe: Recipe) => (
+          <Card key={recipe.id} className="mb-4">
+            <CardContent>
+              <div
+                className="flex flex-col text-center items-center justify-center space-y-4"
+                onClick={() => handleRecipeSelect(recipe.id)}>
+                <h2 className="text-lg font-bold">{recipe.title}</h2>
+                <Image
+                  src={recipe.image}
+                  alt={recipe.title}
+                  width={500}
+                  height={300}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                />
+                <p>Ready in {recipe.readyInMinutes} minutes</p>
+                <p>{recipe.servings} servings</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </>
   );
 }
