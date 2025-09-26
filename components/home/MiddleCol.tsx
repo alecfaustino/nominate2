@@ -143,7 +143,7 @@ export default function MiddleCol({
   return (
     <>
       {loading && <Loading />}
-      <div className="grid grid-cols-1 gap-4 m-4">
+      <div className="grid grid-cols-1 gap-4">
         {recipes?.map((recipe: Recipe) => {
           const isFavorited = favoritesSet.has(recipe.id);
 
