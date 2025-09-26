@@ -23,7 +23,7 @@ export default function Navbar({ setIsFilterModalOpen }: NavbarProps) {
             Filters
           </p>
 
-          <Link href="#">Favorites</Link>
+          <Link href="/favorites">Favorites</Link>
           <DarkButton />
         </div>
       </div>
