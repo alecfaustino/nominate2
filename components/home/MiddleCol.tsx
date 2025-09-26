@@ -107,7 +107,6 @@ export default function MiddleCol({
     if (selected) setSelectedRecipe(selected);
   };
 
-  console.log(recipes);
   return (
     <>
       {loading && <Loading />}
