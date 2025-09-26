@@ -175,7 +175,7 @@ export default function MiddleCol({
                     e.stopPropagation(); // Prevent triggering recipe select
                     toggleFavorite(recipe);
                   }}
-                  className="absolute top-2 right-2">
+                  className="absolute top-2 right-2 cursor-pointer">
                   {isFavorited ? (
                     <Heart className="h-5 w-5 fill-red-500 text-red-500" />
                   ) : (
@@ -190,44 +190,3 @@ export default function MiddleCol({
     </>
   );
 }
-
-/*
-
-
-<Card key={recipe.id} className="mb-4">
-            <CardContent>
-              <div
-                className="flex flex-col text-center items-center justify-center space-y-4"
-                onClick={() => handleRecipeSelect(recipe.id)}>
-                <h2 className="text-lg font-bold">{recipe.title}</h2>
-                <Image
-                  src={recipe.image}
-                  alt={recipe.title}
-                  width={500}
-                  height={300}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                  }}
-                />
-                <p>Ready in {recipe.readyInMinutes} minutes</p>
-                <p>{recipe.servings} servings</p>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent triggering recipe select
-                    toggleFavorite(recipe);
-                  }}
-                  className="absolute top-2 right-2">
-                  {isFavorited ? (
-                    <Heart className="h-5 w-5 fill-red-500 text-red-500" />
-                  ) : (
-                    <Heart className="h-5 w-5 text-gray-400 hover:text-red-500" />
-                  )}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-*/

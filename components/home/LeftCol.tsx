@@ -70,7 +70,8 @@ export default function LeftCol({ setActiveFilters }: LeftColProps) {
             variant="outline"
             onClick={() => {
               setActiveFilters(filters);
-            }}>
+            }}
+            className="cursor-pointer">
             Apply Filters
           </Button>
         </CardFooter>
