@@ -5,20 +5,20 @@ import Image from "next/image";
 import { Recipe } from "@/app/types/recipe";
 import { Filters } from "@/app/types/filters";
 import Loading from "./Loading";
+import { Button } from "../ui/button";
 interface MiddleColProps {
   setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;
   activeFilters?: Partial<Filters>;
 }
 
-// TODO: Infinite Scroll
-// TODO: Loading State
-// TODO: Favorite Handling - Local Storage
+// TODO: Clean up the component and use helper function files
 export default function MiddleCol({
   setSelectedRecipe,
   activeFilters,
 }: MiddleColProps) {
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [favorites, setFavorites] = useState<Recipe[]>([]);
   const baseUrl = "https://api.apilayer.com/spoonacular";
   const apiKey: string = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY || "";
   const lastCall = useRef(0);
@@ -107,6 +107,32 @@ export default function MiddleCol({
     if (selected) setSelectedRecipe(selected);
   };
 
+  // LocalStorage Favorite Handling
+
+  // on load, set the favorites state from local storage
+  useEffect(() => {
+    const saved = localStorage.getItem("favorites");
+    if (saved) {
+      setFavorites(JSON.parse(saved));
+    }
+  }, []);
+
+  // Save whenever the favorites state changes
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (recipe: Recipe) => {
+    setFavorites((prev) => {
+      const exists = prev.find((r) => r.id === recipe.id);
+      if (exists) {
+        return prev.filter((r) => r.id !== recipe.id);
+      } else {
+        return [...prev, recipe];
+      }
+    });
+  };
+
   return (
     <>
       {loading && <Loading />}
@@ -130,6 +156,7 @@ export default function MiddleCol({
                 />
                 <p>Ready in {recipe.readyInMinutes} minutes</p>
                 <p>{recipe.servings} servings</p>
+                <Button onClick={() => toggleFavorite(recipe)}>Favorite</Button>
               </div>
             </CardContent>
           </Card>
