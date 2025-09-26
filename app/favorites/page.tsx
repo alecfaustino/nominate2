@@ -6,6 +6,7 @@ import Loading from "@/components/home/Loading";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import RightColModal from "@/components/home/MobileComponents/RightColModal";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<Recipe[]>([]);
@@ -68,6 +69,13 @@ export default function Favorites() {
           </Card>
         ))}
       </div>
+
+      {selectedRecipe && (
+        <RightColModal
+          selectedRecipe={selectedRecipe}
+          setSelectedRecipe={setSelectedRecipe}
+        />
+      )}
     </div>
   );
 }
