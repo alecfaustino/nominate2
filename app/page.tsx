@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-// TODO: DARK MODE
 export default function Home() {
   return (
     <div className="relative w-full h-[100vh] min-h-[400px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
