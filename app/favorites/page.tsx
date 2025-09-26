@@ -7,11 +7,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import RightColModal from "@/components/home/MobileComponents/RightColModal";
+import Navbar from "@/components/Navbar";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -41,9 +43,11 @@ export default function Favorites() {
   };
 
   return (
-    <div className="p-4">
+    <div>
+      <Navbar setIsFilterModalOpen={setIsFilterModalOpen} />
       {loading && <Loading />}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4">
         {favorites?.map((recipe: Recipe) => (
           <Card key={recipe.id}>
             <CardContent>

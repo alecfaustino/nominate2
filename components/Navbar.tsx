@@ -22,7 +22,7 @@ export default function Navbar({ setIsFilterModalOpen }: NavbarProps) {
             onClick={() => setIsFilterModalOpen?.((prev) => !prev)}>
             Filters
           </p>
-
+          <Link href="/home">Home</Link>
           <Link href="/favorites">Favorites</Link>
           <DarkButton />
         </div>
