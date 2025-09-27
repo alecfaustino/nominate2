@@ -23,7 +23,7 @@ export default function MiddleCol({
   const baseUrl = "https://api.apilayer.com/spoonacular";
   const apiKey: string = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY || "";
   const lastCall = useRef(0);
-  const fetchRecipe = async () => {
+  const fetchRecipe = async (isAppending = false) => {
     setLoading(true);
     try {
       const fetchUrl = new URL(`${baseUrl}/recipes/complexSearch`);
@@ -64,7 +64,12 @@ export default function MiddleCol({
       });
       const data = await fetchResult.json();
       const recipe = data.results;
-      setRecipes((prev) => [...prev, ...recipe]);
+      setRecipes((prev) => {
+        const newRecipes = isAppending ? [...prev, ...recipe] : recipe;
+        // Save updated recipes to sessionStorage with correct timing
+        sessionStorage.setItem("recipes", JSON.stringify(newRecipes));
+        return newRecipes;
+      });
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -85,7 +90,7 @@ export default function MiddleCol({
       const fullHeight = document.documentElement.scrollHeight;
 
       if (scrollTop + windowHeight >= fullHeight - 100 && !loading) {
-        fetchRecipe();
+        fetchRecipe(true); // Pass true for infinite scroll (append)
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -96,11 +101,15 @@ export default function MiddleCol({
     };
   }, [activeFilters]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Load recipes on mount / filter change
   useEffect(() => {
-    // if the active filters change, reset recipes and fetch new ones
-    setRecipes([]);
-    fetchRecipe();
+    const saved = sessionStorage.getItem("recipes");
+    if (saved) {
+      setRecipes(JSON.parse(saved));
+    } else {
+      setRecipes([]);
+      fetchRecipe(false); // Pass false for filter change (replace)
+    }
   }, [activeFilters]);
 
   const handleRecipeSelect = (id: number) => {
