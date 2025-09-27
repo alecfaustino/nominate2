@@ -12,7 +12,13 @@ interface MiddleColProps {
   activeFilters?: Partial<Filters>;
 }
 
-// TODO: Clean up the component and use helper function files
+// TODO: Clean up the component and use a utils file
+// cache key for filters
+const getCacheKey = (filters: Partial<Filters> | undefined) => {
+  const filtersKey = JSON.stringify(filters || {});
+  return `recipes_${filtersKey}`;
+};
+
 export default function MiddleCol({
   setSelectedRecipe,
   activeFilters,
@@ -66,8 +72,11 @@ export default function MiddleCol({
       const recipe = data.results;
       setRecipes((prev) => {
         const newRecipes = isAppending ? [...prev, ...recipe] : recipe;
-        // Save updated recipes to sessionStorage with correct timing
-        sessionStorage.setItem("recipes", JSON.stringify(newRecipes));
+        // generate a key and save to sessionStorage
+        sessionStorage.setItem(
+          getCacheKey(activeFilters),
+          JSON.stringify(newRecipes)
+        );
         return newRecipes;
       });
       setLoading(false);
@@ -90,7 +99,7 @@ export default function MiddleCol({
       const fullHeight = document.documentElement.scrollHeight;
 
       if (scrollTop + windowHeight >= fullHeight - 100 && !loading) {
-        fetchRecipe(true); // Pass true for infinite scroll (append)
+        fetchRecipe(true); //  (append)
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -103,12 +112,12 @@ export default function MiddleCol({
 
   // Load recipes on mount / filter change
   useEffect(() => {
-    const saved = sessionStorage.getItem("recipes");
+    const saved = sessionStorage.getItem(getCacheKey(activeFilters));
     if (saved) {
       setRecipes(JSON.parse(saved));
     } else {
       setRecipes([]);
-      fetchRecipe(false); // Pass false for filter change (replace)
+      fetchRecipe(false); // (replace)
     }
   }, [activeFilters]);
 
